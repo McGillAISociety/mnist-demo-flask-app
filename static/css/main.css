@@ -41,6 +41,12 @@ h1, h2, h3, h4, h5, h6, p {
     margin-bottom: 1em;
 }
 
+/* RESULT TEXT */
+
+.result { 
+    padding-top: 11em;
+}
+
 /* UPLOAD FILE BUTTON */
 
 input[type="file"] {
@@ -54,15 +60,6 @@ input[type="file"] {
     padding: 6px 12px;
     max-width: 200px;
     cursor: pointer;
-}
-
-/* SUBMIT BUTTON */
-
-input[type="submit"] {
-    border: none; 
-    font-size: 1.2em;
-    font-weight: bolder;
-    bottom: 10px;
 }
 
 

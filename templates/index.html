@@ -1,22 +1,36 @@
 <!DOCTYPE html>
 <html>
    <head>
+      <!-- STYLESHEET -->
       <link rel="stylesheet" type="text/css" href="./static/css/main.css">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+      <!-- JAVSCRIPT -->
+      <script src="./static/js/main.js"></script>
    </head>
    <body>
       <div class="content">
          <h1 class="title"> MNIST FLASK APP DEMO </h1>
-         <form action="http://localhost:5000/" method="POST">
+         <form action = "http://localhost:5000/" method = "POST" 
+               enctype = "multipart/form-data">
          <div class="image-box center">
-            <img id="upload-img" class="center" src="./static/img/upload.png" width="100">
-            <label for="file-upload" class="center custom-button">
-               <i class="fa fa-upload"></i> upload your image
-               <input type="file" id="file-upload" name="image" />
-            </label>
+            {% if prediction == None %}
+               <img id="upload-img" class="center" src="./static/img/upload.png" width="100">
+               <label for="file-upload" class="center custom-button">
+                  <i class="fa fa-upload"></i> upload your image
+                  <input type="file" id="file-upload" name="image" onchange=submit() />
+               </label> 
+            {% else %}
+               <p class="result"> The MNIST model read a <b>{{ prediction }}</b> </p>
+            {% endif %}
          </div>
-            <input type="submit" class="custom-button center" />
+            {% if prediction != None %}
+               <label for="file-upload" class="center custom-button">
+                  <i class="fa fa-upload"></i> upload another image
+                  <input type="file" id="file-upload" name="image" onchange=submit() />
+               </label>
+            {% endif %}
          </form>  
       </div>
    </body>
