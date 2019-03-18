@@ -32,6 +32,7 @@ h1, h2, h3, h4, h5, h6, p {
     margin-top: 3em;
     margin-bottom: 1em;
     min-height: 25em;
+    max-width: 650px;
     position: relative;
 }
 
