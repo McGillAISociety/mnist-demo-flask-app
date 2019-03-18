@@ -42,6 +42,7 @@ class Predictor:
 		image = Image.open(f)
 		image = preprocess_img(image)
 		image = image_loader(image)
-		prediction = self.model.net(image)
-		return prediction
+		model_output = self.model.net(image)
+		prediction = torch.argmax(model_output)
+		return prediction.item()
 	
