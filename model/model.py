@@ -1,4 +1,4 @@
-from .nn import Net  
+from .nn import Net
 
 import matplotlib
 matplotlib.use('TkAgg')
@@ -12,8 +12,8 @@ import torch.nn.functional as F
 import torchvision.transforms.functional as TF
 
 # Look to the path of your current working directory
-save_model_path = 'results/model.pth'
-save_optimizer_path = 'results/optimizer.pth'
+save_model_path = './model/results/model.pth'
+save_optimizer_path = './model/results/optimizer.pth'
 
 size = (28, 28)
 
@@ -48,15 +48,16 @@ class MNISTModel:
 		self.net = Net()
 		self.optimizer = optim.SGD(self.net.parameters(), lr=learning_rate, momentum=momentum)
 
-	def train_model(self, train_data, test_data, nb_epoch=3):
-		# Define model training parameters. 
-		n_epochs = 3
+	def train_model(self, train_data, test_data, n_epochs=3, log_interval=100):
+		'''
+		This method trains the model at a higher level. Calls train and test methods. 
+		'''
 
 		for epoch in range(1, n_epochs + 1):
-			model.train(train_data)
+			model.train(train_data, epoch, log_interval)
 			model.test(test_data)
 
-	def train(self, train_data, log_interval=100): 
+	def train(self, train_data, epoch, log_interval): 
 		'''
 		This method trains the neural network. 
 		The model is saved after each epoch in `./results/` 
@@ -75,7 +76,7 @@ class MNISTModel:
 				torch.save(self.net.state_dict(), save_model_path)
 				torch.save(self.optimizer.state_dict(), save_optimizer_path)
 
-	def test(self, model, test_data):
+	def test(self, test_data):
 		'''
 		This method evaluates the train model and outputs the final accuracy results. 
 		'''
@@ -102,7 +103,7 @@ if __name__ == "__main__" :
 	train_loader, test_loader = load_data()
 
 	# Train the model
-	model.train_model(train_loader, test_loader)
+	model.train_model(train_loader, test_loader, 6)
 	
 	
 	
