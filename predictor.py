@@ -30,12 +30,19 @@ def image_loader(image):
 
 class Predictor: 
 	def __init__(self):
-		# ======== YOUR CODE ========= #
+		self.model = MNISTModel()
+		self.model.net.load_state_dict(torch.load('model/results/model.pth'))
 
 	def predict(self, request):
 		'''
 		This method reads the file uploaded from the Flask application POST request, 
 		and performs a prediction using the MNIST model. 
 		'''
-		# ======== YOUR CODE ========= #
+		f = request.files['image']
+		image = Image.open(f)
+		image = preprocess_img(image)
+		image = image_loader(image)
+		model_output = self.model.net(image)
+		prediction = torch.argmax(model_output)
+		return prediction.item()
 	
