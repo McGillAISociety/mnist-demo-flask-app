@@ -1,10 +1,23 @@
+<!DOCTYPE html>
 <html>
+   <head>
+      <link rel="stylesheet" type="text/css" href="./static/css/main.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   </head>
    <body>
-      <form action = "http://localhost:5000/" method = "POST" 
-         enctype = "multipart/form-data">
-         <input type = "file" name = "image" />
-         <input type = "submit"/>
-	  </form>
-		  <p> The predicted number is {{ prediction }}</p>
+      <div class="content">
+         <h1 class="title"> MNIST FLASK APP DEMO </h1>
+         <form action="http://localhost:5000/" method="POST">
+         <div class="image-box">
+            <img id="upload-img" class="center" src="./static/img/upload.png" width="100">
+            <label for="file-upload" class="center custom-button">
+               <i class="fa fa-upload"></i> upload your image
+               <input type="file" id="file-upload" name="image" />
+            </label>
+         </div>
+            <input type="submit" class="custom-button center" />
+         </form>  
+      </div>
    </body>
 </html>
